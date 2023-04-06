@@ -1,12 +1,11 @@
 import logging
 import os
-
 import schedule
 import datetime
+import time
 
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, executor, types
 from dotenv import load_dotenv
-
 
 load_dotenv()
 
@@ -18,20 +17,17 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 
 
-async def start_poll():
+@dp.message_handler(commands=['start', 'help'])
+async def send_welcome(message: types.Message):
+    await message.reply('Привет')
+
+
+# @dp.message_handler(commands=['poll'])
+async def start_poll(bot: Bot, chat_id: int):
     question = 'Го на турнички'
-    options = ['Вариант 1', 'Вариант 2', 'Вариант 3']
-    await bot.send_poll(chat_id=CHAT_ID, question=question, options=options)
+    options = ['го', 'нет']
+    await bot.send_poll(chat_id=chat_id, question=question, options=options, is_anonymous=False)
 
 
-def job():
-    now = datetime.datetime.now()
-    if now.weekday() < 5:
-        dp.loop.create_task(start_poll())
-
-
-schedule.every(3).seconds.do(start_poll)
-
-while True:
-    schedule.run_pending()
-
+if __name__ == '__main__':
+    executor.start_polling(dp, skip_updates=True)
