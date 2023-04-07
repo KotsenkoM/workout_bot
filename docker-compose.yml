@@ -3,5 +3,5 @@ services:
   bot:
     build: .
     volumes:
-      - /path/to/your/bot:/app
+      - workout_bot:/app
     restart: always
