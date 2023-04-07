@@ -1,10 +1,8 @@
+import asyncio
 import logging
 import os
-import schedule
-import datetime
-import time
 
-from aiogram import Bot, Dispatcher, executor, types
+from aiogram import Bot, Dispatcher, executor
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,17 +15,14 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 
 
-@dp.message_handler(commands=['start', 'help'])
-async def send_welcome(message: types.Message):
-    await message.reply('Привет')
-
-
-# @dp.message_handler(commands=['poll'])
-async def start_poll(bot: Bot, chat_id: int):
+async def start_poll():
     question = 'Го на турнички'
     options = ['го', 'нет']
-    await bot.send_poll(chat_id=chat_id, question=question, options=options, is_anonymous=False)
+    while True:
+        await bot.send_poll(chat_id=CHAT_ID, question=question, options=options, is_anonymous=False)
+        await asyncio.sleep(5)
 
 
 if __name__ == '__main__':
+    asyncio.get_event_loop().create_task(start_poll())
     executor.start_polling(dp, skip_updates=True)
