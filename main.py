@@ -23,6 +23,6 @@ async def start_poll():
 
 
 if __name__ == '__main__':
-    scheduler.add_job(start_poll, 'cron', day_of_week='mon-fri', hour='15', minute='1, 2, 3')
+    scheduler.add_job(start_poll, 'cron', day_of_week='mon-fri', hour='10', minute='29, 30, 31')
     scheduler.start()
     executor.start_polling(dp, skip_updates=True)
