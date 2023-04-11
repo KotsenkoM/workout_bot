@@ -1,7 +1,7 @@
 import logging
 import os
 
-from aiogram import Bot, Dispatcher, executor, types
+from aiogram import Bot, Dispatcher, executor
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from dotenv import load_dotenv
 
@@ -17,6 +17,9 @@ scheduler = AsyncIOScheduler()
 
 
 async def start_poll():
+    """
+    Создает голосование в телеграм чате
+    """
     question = 'Го на турнички через 5 минут?'
     options = ['Иду', 'Пропускаю']
     await bot.send_poll(chat_id=CHAT_ID, question=question, options=options, is_anonymous=False)
