@@ -9,6 +9,8 @@ load_dotenv()
 
 TOKEN = os.getenv('TOKEN')
 CHAT_ID = os.getenv('CHAT_ID')
+QUESTION = os.getenv('QUESTION')
+OPTIONS = os.getenv('OPTIONS')
 logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=TOKEN)
@@ -20,9 +22,7 @@ async def start_poll():
     """
     Создает голосование в телеграм чате
     """
-    question = 'Го на турнички через 5 минут?'
-    options = ['Иду', 'Пропускаю']
-    await bot.send_poll(chat_id=CHAT_ID, question=question, options=options, is_anonymous=False)
+    await bot.send_poll(chat_id=CHAT_ID, question=QUESTION, options=OPTIONS.split(', '), is_anonymous=False)
 
 
 if __name__ == '__main__':
