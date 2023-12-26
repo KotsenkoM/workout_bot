@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+    image: workout_bot_image
+    container_name: workout_bot_container

@@ -1,0 +1,11 @@
+[flake8]
+max-line-length = 118
+exclude =
+  venv
+ignore =
+    #I001: import in the wrong position
+    I001,
+    #I003: expected 1 blank line in imports, found 0
+    I003,
+    #I005: unexpected missing import
+    I005

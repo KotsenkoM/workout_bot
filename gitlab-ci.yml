@@ -1,0 +1,28 @@
+stages:
+  - lint
+  - deploy
+
+flake8:
+  stage: lint
+  tags:
+    - deploy
+  script:
+      - python3 -m pip install --upgrade pip
+      - pip install flake8
+      - python3 -m flake8
+
+deploy:
+  stage: deploy
+  tags:
+    - deploy
+  before_script:
+    - touch .env
+    - echo "TOKEN=TOKEN" >> .env
+    - echo "CHAT_ID=CHAT_ID" >> .env
+  script:
+    - export DOCKER_BUILDKIT=0
+    - docker stop workout_bot_container || true
+    - docker-compose up -d --build
+#rules:
+#    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+#      when: manual
