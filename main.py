@@ -43,7 +43,7 @@ async def start_poll_soup():
     }
     await bot.send_poll(
         chat_id=CHAT_ID,
-        question=f'Го за супчиком через 5 минут? Сегодня {soup_dict[day_of_week]}',
+        question=f'Го за супчиком? Сегодня {soup_dict[day_of_week]}',
         options=answer,
         is_anonymous=False
     )
@@ -58,7 +58,7 @@ async def start_poll_khinkali():
 
 if __name__ == '__main__':
     # scheduler.add_job(start_poll_workout, 'cron', day_of_week='mon-fri', hour='10, 15', minute='55')
-    scheduler.add_job(start_poll_soup, 'cron', day_of_week='mon-fri', hour='10', minute='50')
-    scheduler.add_job(start_poll_khinkali, 'cron', day_of_week='thu', hour='10', minute='45')
+    scheduler.add_job(start_poll_soup, 'cron', day_of_week='mon-fri', hour='10', minute='00')
+    scheduler.add_job(start_poll_khinkali, 'cron', day_of_week='thu', hour='11', minute='30')
     scheduler.start()
     executor.start_polling(dp, skip_updates=True)
