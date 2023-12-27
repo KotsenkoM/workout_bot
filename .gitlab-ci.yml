@@ -17,8 +17,8 @@ deploy:
     - deploy
   before_script:
     - touch .env
-    - echo "TOKEN=TOKEN" >> .env
-    - echo "CHAT_ID=CHAT_ID" >> .env
+    - echo "TOKEN=$TOKEN" >> .env
+    - echo "CHAT_ID=$CHAT_ID" >> .env
   script:
     - export DOCKER_BUILDKIT=0
     - docker stop workout_bot_container || true
