@@ -73,8 +73,8 @@ async def start_poll_dinner_time():
 
 if __name__ == '__main__':
     # scheduler.add_job(start_poll_workout, 'cron', day_of_week='mon-fri', hour='10, 15', minute='55')
-    scheduler.add_job(start_poll_where_to_go, 'cron', day_of_week='thu', hour='10', minute='00', seconds='00')
-    scheduler.add_job(start_poll_soup, 'cron', day_of_week='mon-fri', hour='10', minute='00', seconds='05')
+    scheduler.add_job(start_poll_where_to_go, 'cron', day_of_week='thu', hour='10', minute='00')
+    scheduler.add_job(start_poll_soup, 'cron', day_of_week='mon-fri', hour='10', minute='00')
     scheduler.add_job(start_poll_dinner_time, 'cron', day_of_week='mon-fri', hour='11', minute='45')
     scheduler.start()
     executor.start_polling(dp, skip_updates=True)
