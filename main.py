@@ -55,13 +55,20 @@ async def start_poll_where_to_go():
     """
     answer = [
         'Я за супчиком',
-        'Го в хинкальную',
+        'Го в другую хинкальную',
         'Го в атриум',
         'Го за шавой',
+        'Го в милти',
         'Напишу свой вариант ниже',
         'У меня с собой'
     ]
-    await bot.send_poll(chat_id=CHAT_ID, question='Го куда-нибудь сегодня?', options=answer, is_anonymous=False)
+    await bot.send_poll(
+        chat_id=CHAT_ID,
+        question='Го куда-нибудь сегодня?',
+        options=answer,
+        is_anonymous=False,
+        allows_multiple_answers=True
+    )
 
 
 async def start_poll_dinner_time():
