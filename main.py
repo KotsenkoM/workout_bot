@@ -101,7 +101,7 @@ async def start_poll_dinner_time():
     await bot.send_poll(chat_id=CHAT_ID, question='Во сколько на обед сегодня?', options=answer, is_anonymous=False)
 
 if __name__ == '__main__':
-    # scheduler.add_job(start_poll_workout, 'cron', day_of_week='mon-fri', hour='10, 15', minute='55')
+    scheduler.add_job(start_poll_workout, 'cron', day_of_week='mon-fri', hour='10, 15', minute='55')
     scheduler.add_job(start_poll_sirniki_time, 'cron', day_of_week='mon-fri', hour='08', minute='45')
     scheduler.add_job(start_poll_where_to_go, 'cron', day_of_week='wed', hour='20', minute='00')
     scheduler.add_job(start_poll_soup, 'cron', day_of_week='mon-fri', hour='10', minute='00')
