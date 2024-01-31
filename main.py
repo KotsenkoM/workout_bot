@@ -30,9 +30,7 @@ async def start_poll_soup_and_workout():
     Создает голосование в телеграм чате
     """
     answer = [
-        'И то и другое буду',
-        'Только за супчиком',
-        'Только на турнички',
+        'Иду',
         'Возьмите мне супчика плез',
         'Пас'
     ]
@@ -49,7 +47,7 @@ async def start_poll_soup_and_workout():
     }
     await bot.send_poll(
         chat_id=CHAT_ID,
-        question=f'Го на турнички и за супчиком в 11? Сегодня {soup_dict[day_of_week]}',
+        question=f'Го за супчиком в 11? Сегодня {soup_dict[day_of_week]}',
         options=answer,
         is_anonymous=False
     )
