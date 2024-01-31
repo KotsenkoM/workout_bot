@@ -77,7 +77,7 @@ async def start_poll_where_to_go():
 
 async def start_poll_sirniki_time():
     answer = [
-        'Иду к 9:05',
+        'Я все куплю!',
         'Сырники (80руб)',
         'Сырники 2 порции (160руб)',
         'Запеканка (140руб)',
