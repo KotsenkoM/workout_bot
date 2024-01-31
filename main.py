@@ -21,15 +21,21 @@ async def start_poll_workout():
     """
     Создает голосование в телеграм чате
     """
-    answer = ['Иду', 'Пропускаю']
-    await bot.send_poll(chat_id=CHAT_ID, question='Го на турнички через 5 минут?', options=answer, is_anonymous=False)
+    answer = ['Иду', 'Пас']
+    await bot.send_poll(chat_id=CHAT_ID, question='Выходим через 5 минут?', options=answer, is_anonymous=False)
 
 
-async def start_poll_soup():
+async def start_poll_soup_and_workout():
     """
     Создает голосование в телеграм чате
     """
-    answer = ['Иду', 'Пас']
+    answer = [
+        'И то и другое буду',
+        'Только за супчиком',
+        'Только на турнички',
+        'Возьмите мне супчика плез',
+        'Пас'
+    ]
     now = datetime.now()
     # Получаем день недели (понедельник - 0, воскресенье - 6)
     day_of_week = now.weekday()
@@ -43,7 +49,7 @@ async def start_poll_soup():
     }
     await bot.send_poll(
         chat_id=CHAT_ID,
-        question=f'Го за супчиком? Сегодня {soup_dict[day_of_week]}',
+        question=f'Го на турнички и за супчиком в 11? Сегодня {soup_dict[day_of_week]}',
         options=answer,
         is_anonymous=False
     )
@@ -104,7 +110,7 @@ if __name__ == '__main__':
     scheduler.add_job(start_poll_workout, 'cron', day_of_week='mon-fri', hour='10, 15', minute='55')
     scheduler.add_job(start_poll_sirniki_time, 'cron', day_of_week='mon-fri', hour='08', minute='45')
     scheduler.add_job(start_poll_where_to_go, 'cron', day_of_week='wed', hour='20', minute='00')
-    scheduler.add_job(start_poll_soup, 'cron', day_of_week='mon-fri', hour='10', minute='00')
+    scheduler.add_job(start_poll_soup_and_workout, 'cron', day_of_week='mon-fri', hour='10', minute='00')
     scheduler.add_job(start_poll_dinner_time, 'cron', day_of_week='mon-fri', hour='11', minute='45')
     scheduler.start()
     executor.start_polling(dp, skip_updates=True)
