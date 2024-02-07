@@ -58,11 +58,12 @@ async def start_poll_where_to_go():
     Создает голосование в телеграм чате
     """
     answer = [
-        'Я за супчиком',
-        'Го в другую хинкальную',
+        'Я за супчиком, завтра борщч',
+        'Го в таракальную',
         'Го в атриум',
         'Го за шавой',
         'Го в милти',
+        'Го в тануки'
         'Напишу свой вариант ниже',
         'У меня с собой'
     ]
@@ -108,7 +109,13 @@ if __name__ == '__main__':
     scheduler.add_job(start_poll_workout, 'cron', day_of_week='mon-fri', hour='10, 15', minute='55')
     scheduler.add_job(start_poll_sirniki_time, 'cron', day_of_week='mon-fri', hour='08', minute='45')
     scheduler.add_job(start_poll_where_to_go, 'cron', day_of_week='wed', hour='20', minute='00')
-    scheduler.add_job(start_poll_soup_and_workout, 'cron', day_of_week='mon-fri', hour='10', minute='00')
+    scheduler.add_job(
+        start_poll_soup_and_workout,
+        'cron',
+        day_of_week=('mon', 'tue', 'wed', 'fri'),
+        hour='10',
+        minute='00'
+    )
     scheduler.add_job(start_poll_dinner_time, 'cron', day_of_week='mon-fri', hour='11', minute='45')
     scheduler.start()
     executor.start_polling(dp, skip_updates=True)
