@@ -112,7 +112,7 @@ if __name__ == '__main__':
     scheduler.add_job(
         start_poll_soup_and_workout,
         'cron',
-        day_of_week=('mon', 'tue', 'wed', 'fri'),
+        day_of_week=['mon', 'tue', 'wed', 'fri'],
         hour='10',
         minute='00'
     )
